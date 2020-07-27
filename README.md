@@ -1,5 +1,5 @@
 ## Docker CLI Commands
-### Reference https://spin.atomicobject.com/2018/10/04/docker-command-line/#:~:text=The%20%2D%2Drm%20causes%20Docker,or%20any%20connected%20Docker%20registry).
+### Reference [Guide](https://spin.atomicobject.com/2018/10/04/docker-command-line/#:~:text=The%20--rm%20causes%20Docker,or%20any%20connected%20Docker%20registry)
 
 Run all container 
 
@@ -20,17 +20,17 @@ To list all Process Status
 ```bash
 docker ps [OPTIONS]
 
-	OPTIONS: 
+OPTIONS: 
 
-		Name, shorthand		Default	Description
-		--all , -a			Show all containers (default shows just running)
-		--filter , -f		Filter output based on conditions provided
-		--format			Pretty-print containers using a Go template
-		--last , -n	-1		Show n last created containers (includes all states)
-		--latest , -l		Show the latest created container (includes all states)
-		--no-trunc			Don’t truncate output
-		--quiet , -q		Only display numeric IDs
-		--size , -s			Display total file sizes
+	Name, shorthand		Default	Description
+	--all , -a			Show all containers (default shows just running)
+	--filter , -f		Filter output based on conditions provided
+	--format			Pretty-print containers using a Go template
+	--last , -n	-1		Show n last created containers (includes all states)
+	--latest , -l		Show the latest created container (includes all states)
+	--no-trunc			Don’t truncate output
+	--quiet , -q		Only display numeric IDs
+	--size , -s			Display total file sizes
 ```
 Restart containers 
 
@@ -86,25 +86,25 @@ Run or mapping static website to host images
 #Referring the files from host 
 
 docker run --rm -it --name -p port:port some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
-	Ex:  docker run --rm -it -p 8080:80 --name nginx -v C:\Users\kkant\docker-practice:/usr/share/nginx/html:ro -d some-nginx
+Ex:  docker run --rm -it -p 8080:80 --name nginx -v C:\Users\kkant\docker-practice:/usr/share/nginx/html:ro -d some-nginx
 
 #Copy the file into docker containers
 
 docker cp source-file-path container-name:destination-path
-	Ex: docker cp .\app\. nginx:/usr/share/nginx/html
+Ex: docker cp .\app\. nginx:/usr/share/nginx/html
 
 docker exec -it container-name bash // Open bash console into a container 
-	Ex: docker exec -it nginx bash // Open bash console into a container 
+Ex: docker exec -it nginx bash // Open bash console into a container 
 
 #Baking a files into image from a container
 
 docker commit container-name  image-name:image-tag
-	Ex: docker commit nginx furnish:nginx
+Ex: docker commit nginx furnish:nginx
 
 #Push an image into docker hub 
 
 docker push conrtainer-name/image_name:tag
-	Ex: docker push kkdker/furnish:nginx
+Ex: docker push kkdker/furnish:nginx
 ```
 
 
@@ -130,7 +130,7 @@ To get the dangling volumes which is not associated any containers
 ```bash
 docker volume ls -f dangling=true
 
-	#To remove volume  
+#To remove volume  
 docker volume rm $(docker volume ls -qf dangling=true)
 ```
 
@@ -139,7 +139,7 @@ Remove all images
 ```bash
 docker rmi $(docker images ls -q)
 
-	#TO remove dangling images 
+#TO remove dangling images 
 
 docker rmi $(docker images -qf dangling=true)
 ```
