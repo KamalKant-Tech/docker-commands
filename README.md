@@ -83,10 +83,10 @@ docker inspect cotainer-name
 Run or mapping static website to host images 
 	
 ```bash
-#Referring the files from host 
+#Referring the files from host --rm used to delete the container once it is gets exited
 
-docker run --rm -it --name -p port:port some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
-Ex:  docker run --rm -it -p 8080:80 --name nginx -v C:\Users\kkant\docker-practice:/usr/share/nginx/html:ro -d some-nginx
+docker run --rm -it --name -p locaport:remoteport some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
+Ex:  docker run --rm -it -p 8080:80 --name nginx -v C:\Users\kkant\docker-practice:/usr/share/nginx/html:ro -d nginx
 
 #Copy the file into docker containers
 
@@ -96,8 +96,8 @@ Ex: docker cp .\app\. nginx:/usr/share/nginx/html
 docker exec -it container-name bash // Open bash console into a container 
 Ex: docker exec -it nginx bash // Open bash console into a container 
 
-#Baking a files into image from a container
-
+#Baking a files into image from a container OR create a new image from a existing container
+#It wont affect to the existing image instead it will create a new image altogether
 docker commit container-name  image-name:image-tag
 Ex: docker commit nginx furnish:nginx
 
@@ -105,6 +105,9 @@ Ex: docker commit nginx furnish:nginx
 
 docker push conrtainer-name/image_name:tag
 Ex: docker push kkdker/furnish:nginx
+
+#Create tag fot the image
+docker tag image-id image-name
 ```
 
 
@@ -158,3 +161,30 @@ docker run --name service-name --rm --net DNS network name -it image-name sh
 docker run --name furnishDecoration --rm --net myngroknet -it kkdker/myrandomimage:latest	
 ```
 
+Pass args to a container 
+```bash
+#-C used pass args, first sleep for 3 sec and print all done
+docker run --rm -it image-name bash -C "Sleep 3; echo all done"
+```
+
+Run a container in detach mode
+```bash
+#It will run the container in the background and keep it up
+docker run -d -it image-name bash 
+```
+
+Excecute more than one processor into a container
+```bash
+#It will run the container in the background and keep it up
+docker exec -it container-name OR id bash 
+```
+
+Check docker logs
+```bash
+docker logs container-name OR id 
+```
+
+Check docker container running ports
+```bash
+docker port container-name OR id   
+```
